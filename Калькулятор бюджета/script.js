@@ -1,16 +1,57 @@
-let money = prompt('Ваш бюджет на месяц?');
+let money = +prompt('Ваш бюджет на месяц?');
 let time = prompt('Введите дату в формате YYYY-MM-DD');
-let questionFirst = prompt('Введите обязательную статью расходов в этом месяце');
-let questionSecond = prompt('Во сколько обойдется?');
+
+// let a1 = prompt('Введите обязательную статью расходов в этом месяце', '');
+// let a2 = prompt('Во сколько обойдется?', '');
+// let a3 = prompt('Введите обязательную статью расходов в этом месяце', '');
+// let a4 = prompt('Во сколько обойдется?', '');
+
 let appData = {
-    moneyData: money,
+    budget: money,
     timeData: time,
-    expenses: {
-        questionFirst: 'ответ на первый вопрос',
-        questionSecond: 'ответ на второй вопрос'
-    },
+    expenses: {},
     optionalExpenses: {},
     income: [],
     savings: false
 };
-alert(money/30);
+
+for (let i = 0; i < 2; i++) {
+    let a = prompt('Введите обязательную статью расходов в этом месяце');
+    let b = prompt('Во сколько обойдется?', '');
+    if ((typeof(a)) === 'string' && (typeof (a)) != null && (typeof (b)) != null && a != '' && b != '' && a.length < 50) {
+        console.log('done');
+        appData.expenses[a] = b;
+    } else {
+
+    }
+};
+
+// let n = 0;
+
+// do {
+//     n++;
+//     let a = prompt('Введите обязательную статью расходов в этом месяце');
+//     let b = prompt('Во сколько обойдется?', '');
+//
+//     if ((typeof(a)) === 'string' && (typeof (a)) != null && (typeof (b)) != null && a != '' && b != '' && a.length < 50) {
+//         console.log('done');
+//         appData.expenses[a] = b;
+//     } else {
+//
+//     }
+// } while (n < 2);
+
+
+appData.moneyPerDay = appData.budget / 30;
+
+alert('Ежедневный бюджет: ' + appData.moneyPerDay);
+
+if (appData.moneyPerDay < 100) {
+    console.log('Минимальный уровень достатка');
+} else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) {
+    console.log('Средний уровень достатка');
+} else if (appData.moneyPerDay > 2000) {
+    console.log ('Высокий уровень достатка');
+} else {
+    console.log('Ошибка')
+}
